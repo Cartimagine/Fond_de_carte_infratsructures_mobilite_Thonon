@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1185px;
+            height: 827px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/Thononlesbains_2.js"></script>
+        <script src="data/Sentiers_Thononlesbains_3.js"></script>
+        <script src="data/Ruelles_Thononlesbains_4.js"></script>
+        <script src="data/Rues_Thononlesbains_5.js"></script>
+        <script src="data/Chemins_Thononlesbains_6.js"></script>
+        <script src="data/Impasses_Thononlesbains_7.js"></script>
+        <script src="data/Allees_Thononlesbains_8.js"></script>
+        <script src="data/Boulevard_Thononlesbains_9.js"></script>
+        <script src="data/Avenues_Thononlesbains_10.js"></script>
+        <script src="data/EQUIPEMENT_DE_TRANSPORT_11.js"></script>
+        <script src="data/Routes_Thononlesbains_12.js"></script>
+        <script src="data/Voies_ferrees_Thononlesbains_13.js"></script>
+        <script src="data/Aires_covoiturage_Thononlesbains_14.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[46.341969993745295,6.419939190847775],[46.40847467962358,6.553502173391445]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        }
+        map.createPane('pane_Ombrage_Thonon_les_bains_0');
+        map.getPane('pane_Ombrage_Thonon_les_bains_0').style.zIndex = 400;
+        var img_Ombrage_Thonon_les_bains_0 = 'data/Ombrage_Thonon_les_bains_0.png';
+        var img_bounds_Ombrage_Thonon_les_bains_0 = [[44.798773826140945,4.821468323771997],[50.18345863231542,10.682255371894216]];
+        var layer_Ombrage_Thonon_les_bains_0 = new L.imageOverlay(img_Ombrage_Thonon_les_bains_0,
+                                              img_bounds_Ombrage_Thonon_les_bains_0,
+                                              {pane: 'pane_Ombrage_Thonon_les_bains_0'});
+        bounds_group.addLayer(layer_Ombrage_Thonon_les_bains_0);
+        map.addLayer(layer_Ombrage_Thonon_les_bains_0);
+        map.createPane('pane_ESRIWorldTopo_1');
+        map.getPane('pane_ESRIWorldTopo_1').style.zIndex = 401;
+        var layer_ESRIWorldTopo_1 = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRIWorldTopo_1',
+            opacity: 0.575,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_ESRIWorldTopo_1;
+        map.addLayer(layer_ESRIWorldTopo_1);
+        function pop_Thononlesbains_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEE_COM'] !== null ? autolinker.link(feature.properties['INSEE_COM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEE_ARR'] !== null ? autolinker.link(feature.properties['INSEE_ARR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEE_COL'] !== null ? autolinker.link(feature.properties['INSEE_COL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEE_DEP'] !== null ? autolinker.link(feature.properties['INSEE_DEP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEE_REG'] !== null ? autolinker.link(feature.properties['INSEE_REG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POPULATION'] !== null ? autolinker.link(feature.properties['POPULATION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SURFACE_HA'] !== null ? autolinker.link(feature.properties['SURFACE_HA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_APP'] !== null ? autolinker.link(feature.properties['DATE_APP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CONF'] !== null ? autolinker.link(feature.properties['DATE_CONF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM'] !== null ? autolinker.link(feature.properties['NOM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CL_ARROND'] !== null ? autolinker.link(feature.properties['CL_ARROND'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CL_COLLTER'] !== null ? autolinker.link(feature.properties['CL_COLLTER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CL_DEPART'] !== null ? autolinker.link(feature.properties['CL_DEPART'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CL_REGION'] !== null ? autolinker.link(feature.properties['CL_REGION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CAPITALE'] !== null ? autolinker.link(feature.properties['CAPITALE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_RCT'] !== null ? autolinker.link(feature.properties['DATE_RCT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RECENSEUR'] !== null ? autolinker.link(feature.properties['RECENSEUR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SIREN_EPCI'] !== null ? autolinker.link(feature.properties['SIREN_EPCI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_CH_LIEU'] !== null ? autolinker.link(feature.properties['ID_CH_LIEU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_AUT_ADM'] !== null ? autolinker.link(feature.properties['ID_AUT_ADM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_SIREN'] !== null ? autolinker.link(feature.properties['CODE_SIREN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Thononlesbains_2_0() {
+            return {
+                pane: 'pane_Thononlesbains_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Thononlesbains_2');
+        map.getPane('pane_Thononlesbains_2').style.zIndex = 402;
+        map.getPane('pane_Thononlesbains_2').style['mix-blend-mode'] = 'normal';
+        var layer_Thononlesbains_2 = new L.geoJson(json_Thononlesbains_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Thononlesbains_2',
+            layerName: 'layer_Thononlesbains_2',
+            pane: 'pane_Thononlesbains_2',
+            onEachFeature: pop_Thononlesbains_2,
+            style: style_Thononlesbains_2_0,
+        });
+        bounds_group.addLayer(layer_Thononlesbains_2);
+        map.addLayer(layer_Thononlesbains_2);
+        function pop_Sentiers_Thononlesbains_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Sentiers_Thononlesbains_3_0() {
+            return {
+                pane: 'pane_Sentiers_Thononlesbains_3',
+                opacity: 1,
+                color: 'rgba(164,113,88,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Sentiers_Thononlesbains_3');
+        map.getPane('pane_Sentiers_Thononlesbains_3').style.zIndex = 403;
+        map.getPane('pane_Sentiers_Thononlesbains_3').style['mix-blend-mode'] = 'normal';
+        var layer_Sentiers_Thononlesbains_3 = new L.geoJson(json_Sentiers_Thononlesbains_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Sentiers_Thononlesbains_3',
+            layerName: 'layer_Sentiers_Thononlesbains_3',
+            pane: 'pane_Sentiers_Thononlesbains_3',
+            onEachFeature: pop_Sentiers_Thononlesbains_3,
+            style: style_Sentiers_Thononlesbains_3_0,
+        });
+        bounds_group.addLayer(layer_Sentiers_Thononlesbains_3);
+        map.addLayer(layer_Sentiers_Thononlesbains_3);
+        function pop_Ruelles_Thononlesbains_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Ruelles_Thononlesbains_4_0() {
+            return {
+                pane: 'pane_Ruelles_Thononlesbains_4',
+                opacity: 1,
+                color: 'rgba(243,166,178,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Ruelles_Thononlesbains_4');
+        map.getPane('pane_Ruelles_Thononlesbains_4').style.zIndex = 404;
+        map.getPane('pane_Ruelles_Thononlesbains_4').style['mix-blend-mode'] = 'normal';
+        var layer_Ruelles_Thononlesbains_4 = new L.geoJson(json_Ruelles_Thononlesbains_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Ruelles_Thononlesbains_4',
+            layerName: 'layer_Ruelles_Thononlesbains_4',
+            pane: 'pane_Ruelles_Thononlesbains_4',
+            onEachFeature: pop_Ruelles_Thononlesbains_4,
+            style: style_Ruelles_Thononlesbains_4_0,
+        });
+        bounds_group.addLayer(layer_Ruelles_Thononlesbains_4);
+        map.addLayer(layer_Ruelles_Thononlesbains_4);
+        function pop_Rues_Thononlesbains_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Rues_Thononlesbains_5_0() {
+            return {
+                pane: 'pane_Rues_Thononlesbains_5',
+                opacity: 1,
+                color: 'rgba(145,142,139,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Rues_Thononlesbains_5');
+        map.getPane('pane_Rues_Thononlesbains_5').style.zIndex = 405;
+        map.getPane('pane_Rues_Thononlesbains_5').style['mix-blend-mode'] = 'normal';
+        var layer_Rues_Thononlesbains_5 = new L.geoJson(json_Rues_Thononlesbains_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Rues_Thononlesbains_5',
+            layerName: 'layer_Rues_Thononlesbains_5',
+            pane: 'pane_Rues_Thononlesbains_5',
+            onEachFeature: pop_Rues_Thononlesbains_5,
+            style: style_Rues_Thononlesbains_5_0,
+        });
+        bounds_group.addLayer(layer_Rues_Thononlesbains_5);
+        map.addLayer(layer_Rues_Thononlesbains_5);
+        function pop_Chemins_Thononlesbains_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Chemins_Thononlesbains_6_0() {
+            return {
+                pane: 'pane_Chemins_Thononlesbains_6',
+                opacity: 1,
+                color: 'rgba(221,124,68,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Chemins_Thononlesbains_6');
+        map.getPane('pane_Chemins_Thononlesbains_6').style.zIndex = 406;
+        map.getPane('pane_Chemins_Thononlesbains_6').style['mix-blend-mode'] = 'normal';
+        var layer_Chemins_Thononlesbains_6 = new L.geoJson(json_Chemins_Thononlesbains_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Chemins_Thononlesbains_6',
+            layerName: 'layer_Chemins_Thononlesbains_6',
+            pane: 'pane_Chemins_Thononlesbains_6',
+            onEachFeature: pop_Chemins_Thononlesbains_6,
+            style: style_Chemins_Thononlesbains_6_0,
+        });
+        bounds_group.addLayer(layer_Chemins_Thononlesbains_6);
+        map.addLayer(layer_Chemins_Thononlesbains_6);
+        function pop_Impasses_Thononlesbains_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Impasses_Thononlesbains_7_0() {
+            return {
+                pane: 'pane_Impasses_Thononlesbains_7',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Impasses_Thononlesbains_7');
+        map.getPane('pane_Impasses_Thononlesbains_7').style.zIndex = 407;
+        map.getPane('pane_Impasses_Thononlesbains_7').style['mix-blend-mode'] = 'normal';
+        var layer_Impasses_Thononlesbains_7 = new L.geoJson(json_Impasses_Thononlesbains_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Impasses_Thononlesbains_7',
+            layerName: 'layer_Impasses_Thononlesbains_7',
+            pane: 'pane_Impasses_Thononlesbains_7',
+            onEachFeature: pop_Impasses_Thononlesbains_7,
+            style: style_Impasses_Thononlesbains_7_0,
+        });
+        bounds_group.addLayer(layer_Impasses_Thononlesbains_7);
+        map.addLayer(layer_Impasses_Thononlesbains_7);
+        function pop_Allees_Thononlesbains_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Allees_Thononlesbains_8_0() {
+            return {
+                pane: 'pane_Allees_Thononlesbains_8',
+                opacity: 1,
+                color: 'rgba(255,158,23,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Allees_Thononlesbains_8');
+        map.getPane('pane_Allees_Thononlesbains_8').style.zIndex = 408;
+        map.getPane('pane_Allees_Thononlesbains_8').style['mix-blend-mode'] = 'normal';
+        var layer_Allees_Thononlesbains_8 = new L.geoJson(json_Allees_Thononlesbains_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Allees_Thononlesbains_8',
+            layerName: 'layer_Allees_Thononlesbains_8',
+            pane: 'pane_Allees_Thononlesbains_8',
+            onEachFeature: pop_Allees_Thononlesbains_8,
+            style: style_Allees_Thononlesbains_8_0,
+        });
+        bounds_group.addLayer(layer_Allees_Thononlesbains_8);
+        map.addLayer(layer_Allees_Thononlesbains_8);
+        function pop_Boulevard_Thononlesbains_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Boulevard_Thononlesbains_9_0() {
+            return {
+                pane: 'pane_Boulevard_Thononlesbains_9',
+                opacity: 1,
+                color: 'rgba(164,113,88,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Boulevard_Thononlesbains_9');
+        map.getPane('pane_Boulevard_Thononlesbains_9').style.zIndex = 409;
+        map.getPane('pane_Boulevard_Thononlesbains_9').style['mix-blend-mode'] = 'normal';
+        var layer_Boulevard_Thononlesbains_9 = new L.geoJson(json_Boulevard_Thononlesbains_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Boulevard_Thononlesbains_9',
+            layerName: 'layer_Boulevard_Thononlesbains_9',
+            pane: 'pane_Boulevard_Thononlesbains_9',
+            onEachFeature: pop_Boulevard_Thononlesbains_9,
+            style: style_Boulevard_Thononlesbains_9_0,
+        });
+        bounds_group.addLayer(layer_Boulevard_Thononlesbains_9);
+        map.addLayer(layer_Boulevard_Thononlesbains_9);
+        function pop_Avenues_Thononlesbains_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE'] !== null ? autolinker.link(feature.properties['ID_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_VOIE'] !== null ? autolinker.link(feature.properties['TYPE_VOIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_MIN'] !== null ? autolinker.link(feature.properties['NOM_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_INIT'] !== null ? autolinker.link(feature.properties['NOM_INIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MOT_DIR'] !== null ? autolinker.link(feature.properties['MOT_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VALIDITE'] !== null ? autolinker.link(feature.properties['VALIDITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_INSEE'] !== null ? autolinker.link(feature.properties['CODE_INSEE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE_POST'] !== null ? autolinker.link(feature.properties['CODE_POST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_INI'] !== null ? autolinker.link(feature.properties['ALIAS_INI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_MIN'] !== null ? autolinker.link(feature.properties['ALIAS_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_LIAIS'] !== null ? autolinker.link(feature.properties['TYPE_LIAIS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Q_MAJ_MIN'] !== null ? autolinker.link(feature.properties['Q_MAJ_MIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIABILITE'] !== null ? autolinker.link(feature.properties['FIABILITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Avenues_Thononlesbains_10_0() {
+            return {
+                pane: 'pane_Avenues_Thononlesbains_10',
+                opacity: 1,
+                color: 'rgba(243,166,178,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Avenues_Thononlesbains_10');
+        map.getPane('pane_Avenues_Thononlesbains_10').style.zIndex = 410;
+        map.getPane('pane_Avenues_Thononlesbains_10').style['mix-blend-mode'] = 'normal';
+        var layer_Avenues_Thononlesbains_10 = new L.geoJson(json_Avenues_Thononlesbains_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Avenues_Thononlesbains_10',
+            layerName: 'layer_Avenues_Thononlesbains_10',
+            pane: 'pane_Avenues_Thononlesbains_10',
+            onEachFeature: pop_Avenues_Thononlesbains_10,
+            style: style_Avenues_Thononlesbains_10_0,
+        });
+        bounds_group.addLayer(layer_Avenues_Thononlesbains_10);
+        map.addLayer(layer_Avenues_Thononlesbains_10);
+        function pop_EQUIPEMENT_DE_TRANSPORT_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NATURE'] !== null ? autolinker.link(feature.properties['NATURE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAT_DETAIL'] !== null ? autolinker.link(feature.properties['NAT_DETAIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TOPONYME'] !== null ? autolinker.link(feature.properties['TOPONYME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATUT_TOP'] !== null ? autolinker.link(feature.properties['STATUT_TOP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IMPORTANCE'] !== null ? autolinker.link(feature.properties['IMPORTANCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FICTIF'] !== null ? autolinker.link(feature.properties['FICTIF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ETAT'] !== null ? autolinker.link(feature.properties['ETAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_APP'] !== null ? autolinker.link(feature.properties['DATE_APP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CONF'] !== null ? autolinker.link(feature.properties['DATE_CONF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_SOURCE'] !== null ? autolinker.link(feature.properties['ID_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_PLANI'] !== null ? autolinker.link(feature.properties['PREC_PLANI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_ALTI'] !== null ? autolinker.link(feature.properties['PREC_ALTI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EQUIPEMENT_DE_TRANSPORT_11_0() {
+            return {
+                pane: 'pane_EQUIPEMENT_DE_TRANSPORT_11',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(32,168,206,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EQUIPEMENT_DE_TRANSPORT_11');
+        map.getPane('pane_EQUIPEMENT_DE_TRANSPORT_11').style.zIndex = 411;
+        map.getPane('pane_EQUIPEMENT_DE_TRANSPORT_11').style['mix-blend-mode'] = 'normal';
+        var layer_EQUIPEMENT_DE_TRANSPORT_11 = new L.geoJson(json_EQUIPEMENT_DE_TRANSPORT_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EQUIPEMENT_DE_TRANSPORT_11',
+            layerName: 'layer_EQUIPEMENT_DE_TRANSPORT_11',
+            pane: 'pane_EQUIPEMENT_DE_TRANSPORT_11',
+            onEachFeature: pop_EQUIPEMENT_DE_TRANSPORT_11,
+            style: style_EQUIPEMENT_DE_TRANSPORT_11_0,
+        });
+        bounds_group.addLayer(layer_EQUIPEMENT_DE_TRANSPORT_11);
+        map.addLayer(layer_EQUIPEMENT_DE_TRANSPORT_11);
+        function pop_Routes_Thononlesbains_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NATURE'] !== null ? autolinker.link(feature.properties['NATURE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_1_G'] !== null ? autolinker.link(feature.properties['NOM_1_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_1_D'] !== null ? autolinker.link(feature.properties['NOM_1_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_2_G'] !== null ? autolinker.link(feature.properties['NOM_2_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_2_D'] !== null ? autolinker.link(feature.properties['NOM_2_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IMPORTANCE'] !== null ? autolinker.link(feature.properties['IMPORTANCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FICTIF'] !== null ? autolinker.link(feature.properties['FICTIF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POS_SOL'] !== null ? autolinker.link(feature.properties['POS_SOL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ETAT'] !== null ? autolinker.link(feature.properties['ETAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_APP'] !== null ? autolinker.link(feature.properties['DATE_APP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CONF'] !== null ? autolinker.link(feature.properties['DATE_CONF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_SOURCE'] !== null ? autolinker.link(feature.properties['ID_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_PLANI'] !== null ? autolinker.link(feature.properties['PREC_PLANI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_ALTI'] !== null ? autolinker.link(feature.properties['PREC_ALTI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NB_VOIES'] !== null ? autolinker.link(feature.properties['NB_VOIES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LARGEUR'] !== null ? autolinker.link(feature.properties['LARGEUR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IT_VERT'] !== null ? autolinker.link(feature.properties['IT_VERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PRIVE'] !== null ? autolinker.link(feature.properties['PRIVE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SENS'] !== null ? autolinker.link(feature.properties['SENS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CYCLABLE'] !== null ? autolinker.link(feature.properties['CYCLABLE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BUS'] !== null ? autolinker.link(feature.properties['BUS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URBAIN'] !== null ? autolinker.link(feature.properties['URBAIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VIT_MOY_VL'] !== null ? autolinker.link(feature.properties['VIT_MOY_VL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACCES_VL'] !== null ? autolinker.link(feature.properties['ACCES_VL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACCES_PED'] !== null ? autolinker.link(feature.properties['ACCES_PED'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FERMETURE'] !== null ? autolinker.link(feature.properties['FERMETURE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAT_RESTR'] !== null ? autolinker.link(feature.properties['NAT_RESTR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_H'] !== null ? autolinker.link(feature.properties['RESTR_H'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_P'] !== null ? autolinker.link(feature.properties['RESTR_P'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_PPE'] !== null ? autolinker.link(feature.properties['RESTR_PPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_LAR'] !== null ? autolinker.link(feature.properties['RESTR_LAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_LON'] !== null ? autolinker.link(feature.properties['RESTR_LON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESTR_MAT'] !== null ? autolinker.link(feature.properties['RESTR_MAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BORNEDEB_G'] !== null ? autolinker.link(feature.properties['BORNEDEB_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BORNEDEB_D'] !== null ? autolinker.link(feature.properties['BORNEDEB_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BORNEFIN_G'] !== null ? autolinker.link(feature.properties['BORNEFIN_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BORNEFIN_D'] !== null ? autolinker.link(feature.properties['BORNEFIN_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEECOM_G'] !== null ? autolinker.link(feature.properties['INSEECOM_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INSEECOM_D'] !== null ? autolinker.link(feature.properties['INSEECOM_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYP_ADRES'] !== null ? autolinker.link(feature.properties['TYP_ADRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_G'] !== null ? autolinker.link(feature.properties['ALIAS_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALIAS_D'] !== null ? autolinker.link(feature.properties['ALIAS_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['C_POSTAL_G'] !== null ? autolinker.link(feature.properties['C_POSTAL_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['C_POSTAL_D'] !== null ? autolinker.link(feature.properties['C_POSTAL_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_SERV'] !== null ? autolinker.link(feature.properties['DATE_SERV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE_G'] !== null ? autolinker.link(feature.properties['ID_VOIE_G'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VOIE_D'] !== null ? autolinker.link(feature.properties['ID_VOIE_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_RN'] !== null ? autolinker.link(feature.properties['ID_RN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_ITI'] !== null ? autolinker.link(feature.properties['ID_ITI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NUMERO'] !== null ? autolinker.link(feature.properties['NUMERO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NUM_EUROP'] !== null ? autolinker.link(feature.properties['NUM_EUROP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CL_ADMIN'] !== null ? autolinker.link(feature.properties['CL_ADMIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GESTION'] !== null ? autolinker.link(feature.properties['GESTION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TOPONYME'] !== null ? autolinker.link(feature.properties['TOPONYME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ITI_CYCL'] !== null ? autolinker.link(feature.properties['ITI_CYCL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VOIE_VERTE'] !== null ? autolinker.link(feature.properties['VOIE_VERTE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NATURE_ITI'] !== null ? autolinker.link(feature.properties['NATURE_ITI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_ITI'] !== null ? autolinker.link(feature.properties['NOM_ITI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Routes_Thononlesbains_12_0() {
+            return {
+                pane: 'pane_Routes_Thononlesbains_12',
+                opacity: 1,
+                color: 'rgba(190,3,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Routes_Thononlesbains_12');
+        map.getPane('pane_Routes_Thononlesbains_12').style.zIndex = 412;
+        map.getPane('pane_Routes_Thononlesbains_12').style['mix-blend-mode'] = 'normal';
+        var layer_Routes_Thononlesbains_12 = new L.geoJson(json_Routes_Thononlesbains_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Routes_Thononlesbains_12',
+            layerName: 'layer_Routes_Thononlesbains_12',
+            pane: 'pane_Routes_Thononlesbains_12',
+            onEachFeature: pop_Routes_Thononlesbains_12,
+            style: style_Routes_Thononlesbains_12_0,
+        });
+        bounds_group.addLayer(layer_Routes_Thononlesbains_12);
+        map.addLayer(layer_Routes_Thononlesbains_12);
+        function pop_Voies_ferrees_Thononlesbains_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NATURE'] !== null ? autolinker.link(feature.properties['NATURE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POS_SOL'] !== null ? autolinker.link(feature.properties['POS_SOL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ETAT'] !== null ? autolinker.link(feature.properties['ETAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_APP'] !== null ? autolinker.link(feature.properties['DATE_APP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_CONF'] !== null ? autolinker.link(feature.properties['DATE_CONF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_SOURCE'] !== null ? autolinker.link(feature.properties['ID_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_PLANI'] !== null ? autolinker.link(feature.properties['PREC_PLANI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PREC_ALTI'] !== null ? autolinker.link(feature.properties['PREC_ALTI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ELECTRIFIE'] !== null ? autolinker.link(feature.properties['ELECTRIFIE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LARGEUR'] !== null ? autolinker.link(feature.properties['LARGEUR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NB_VOIES'] !== null ? autolinker.link(feature.properties['NB_VOIES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['USAGE'] !== null ? autolinker.link(feature.properties['USAGE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VITES_MAX'] !== null ? autolinker.link(feature.properties['VITES_MAX'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_VFN'] !== null ? autolinker.link(feature.properties['ID_VFN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TOPONYME'] !== null ? autolinker.link(feature.properties['TOPONYME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Voies_ferrees_Thononlesbains_13_0() {
+            return {
+                pane: 'pane_Voies_ferrees_Thononlesbains_13',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        function style_Voies_ferrees_Thononlesbains_13_1() {
+            return {
+                pane: 'pane_Voies_ferrees_Thononlesbains_13',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Voies_ferrees_Thononlesbains_13');
+        map.getPane('pane_Voies_ferrees_Thononlesbains_13').style.zIndex = 413;
+        map.getPane('pane_Voies_ferrees_Thononlesbains_13').style['mix-blend-mode'] = 'normal';
+        var layer_Voies_ferrees_Thononlesbains_13 = new L.geoJson.multiStyle(json_Voies_ferrees_Thononlesbains_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Voies_ferrees_Thononlesbains_13',
+            layerName: 'layer_Voies_ferrees_Thononlesbains_13',
+            pane: 'pane_Voies_ferrees_Thononlesbains_13',
+            onEachFeature: pop_Voies_ferrees_Thononlesbains_13,
+            styles: [style_Voies_ferrees_Thononlesbains_13_0,style_Voies_ferrees_Thononlesbains_13_1,]
+        });
+        bounds_group.addLayer(layer_Voies_ferrees_Thononlesbains_13);
+        map.addLayer(layer_Voies_ferrees_Thononlesbains_13);
+        function pop_Aires_covoiturage_Thononlesbains_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type de mo'] !== null ? autolinker.link(feature.properties['Type de mo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type d'inf'] !== null ? autolinker.link(feature.properties['Type d'inf'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Adresses</th>\
+                        <td>' + (feature.properties['Adresses'] !== null ? autolinker.link(feature.properties['Adresses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ville'] !== null ? autolinker.link(feature.properties['Ville'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Descriptio</th>\
+                        <td>' + (feature.properties['Descriptio'] !== null ? autolinker.link(feature.properties['Descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aires_covoiturage_Thononlesbains_14_0() {
+            return {
+                pane: 'pane_Aires_covoiturage_Thononlesbains_14',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/shopping_car.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Aires_covoiturage_Thononlesbains_14');
+        map.getPane('pane_Aires_covoiturage_Thononlesbains_14').style.zIndex = 414;
+        map.getPane('pane_Aires_covoiturage_Thononlesbains_14').style['mix-blend-mode'] = 'normal';
+        var layer_Aires_covoiturage_Thononlesbains_14 = new L.geoJson(json_Aires_covoiturage_Thononlesbains_14, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aires_covoiturage_Thononlesbains_14',
+            layerName: 'layer_Aires_covoiturage_Thononlesbains_14',
+            pane: 'pane_Aires_covoiturage_Thononlesbains_14',
+            onEachFeature: pop_Aires_covoiturage_Thononlesbains_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Aires_covoiturage_Thononlesbains_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Aires_covoiturage_Thononlesbains_14);
+        map.addLayer(layer_Aires_covoiturage_Thononlesbains_14);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Aires_covoiturage_Thononlesbains_14.png" /> Aires_covoiturage_Thonon-les-bains': layer_Aires_covoiturage_Thononlesbains_14,'<img src="legend/Voies_ferrees_Thononlesbains_13.png" /> Voies_ferrees_Thonon-les-bains': layer_Voies_ferrees_Thononlesbains_13,'<img src="legend/Routes_Thononlesbains_12.png" /> Routes_Thonon-les-bains': layer_Routes_Thononlesbains_12,'<img src="legend/EQUIPEMENT_DE_TRANSPORT_11.png" /> EQUIPEMENT_DE_TRANSPORT': layer_EQUIPEMENT_DE_TRANSPORT_11,'<img src="legend/Avenues_Thononlesbains_10.png" /> Avenues_Thonon-les-bains': layer_Avenues_Thononlesbains_10,'<img src="legend/Boulevard_Thononlesbains_9.png" /> Boulevard_Thonon-les-bains': layer_Boulevard_Thononlesbains_9,'<img src="legend/Allees_Thononlesbains_8.png" /> Allees_Thonon-les-bains': layer_Allees_Thononlesbains_8,'<img src="legend/Impasses_Thononlesbains_7.png" /> Impasses_Thonon-les-bains': layer_Impasses_Thononlesbains_7,'<img src="legend/Chemins_Thononlesbains_6.png" /> Chemins_Thonon-les-bains': layer_Chemins_Thononlesbains_6,'<img src="legend/Rues_Thononlesbains_5.png" /> Rues_Thonon-les-bains': layer_Rues_Thononlesbains_5,'<img src="legend/Ruelles_Thononlesbains_4.png" /> Ruelles_Thonon-les-bains': layer_Ruelles_Thononlesbains_4,'<img src="legend/Sentiers_Thononlesbains_3.png" /> Sentiers_Thonon-les-bains': layer_Sentiers_Thononlesbains_3,'<img src="legend/Thononlesbains_2.png" /> Thonon-les-bains': layer_Thononlesbains_2,"ESRI World Topo": layer_ESRIWorldTopo_1,"Ombrage_Thonon_les_bains": layer_Ombrage_Thonon_les_bains_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
